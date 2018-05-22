@@ -1,0 +1,4 @@
+/home/barbu/yab/yabause/yabause/src/c68k/CMakeFiles/edit_cache.dir
+/home/barbu/yab/yabause/yabause/src/c68k/CMakeFiles/c68kinc.dir
+/home/barbu/yab/yabause/yabause/src/c68k/CMakeFiles/rebuild_cache.dir
+/home/barbu/yab/yabause/yabause/src/c68k/CMakeFiles/gen68k.dir
