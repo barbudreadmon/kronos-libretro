@@ -9,3 +9,5 @@ build/
 *.a
 *.so
 *.swp
+*.o
+*.out

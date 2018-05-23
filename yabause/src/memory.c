@@ -1610,9 +1610,13 @@ int YabSaveStateBuffer(void ** buffer, size_t * size)
 
    fp = tmpfile();
 
+#ifndef __LIBRETRO__
    ScspLockThread();
+#endif
    status = YabSaveStateStream(fp);
+#ifndef __LIBRETRO__
    ScspUnLockThread();
+#endif
 
    if (status != 0)
    {
@@ -1780,7 +1784,9 @@ int YabSaveStateStream(FILE *fp)
 
    free(buf);
 
+#ifndef __LIBRETRO__
    OSDPushMessage(OSDMSG_STATUS, 150, "STATE SAVED");
+#endif
    return 0;
 }
 
@@ -1796,9 +1802,13 @@ int YabLoadStateBuffer(const void * buffer, size_t size)
 
    fseek(fp, 0, SEEK_SET);
 
+#ifndef __LIBRETRO__
    ScspLockThread();
+#endif
    status = YabLoadStateStream(fp);
+#ifndef __LIBRETRO__
    ScspUnLockThread();
+#endif
 
    fclose(fp);
 
@@ -2040,8 +2050,9 @@ int YabLoadStateStream(FILE *fp)
 
    ScspUnMuteAudio(SCSP_MUTE_SYSTEM);
 
+#ifndef __LIBRETRO__
    OSDPushMessage(OSDMSG_STATUS, 150, "STATE LOADED");
-
+#endif
    return 0;
 }
 

@@ -91,3 +91,7 @@ endif
 ifeq ($(HAVE_THREADS),1)
 FLAGS += -DHAVE_THREADS=1
 endif
+
+ifeq ($(HAVE_SSE),1)
+FLAGS += -mfpmath=sse
+endif

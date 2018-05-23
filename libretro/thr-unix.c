@@ -22,6 +22,7 @@
 #include <stdio.h>
 #include <pthread.h>
 #include <sched.h>
+#include <stdlib.h>
 
 /* Thread handle structure. */
 struct thd_s {

@@ -379,6 +379,7 @@ SoundInterface_struct SNDLIBRETRO = {
 
 M68K_struct *M68KCoreList[] = {
     &M68KDummy,
+    &M68KMusashi,
     &M68KC68K,
     NULL
 };
@@ -527,31 +528,23 @@ size_t retro_serialize_size(void)
 
 bool retro_serialize(void *data, size_t size)
 {
-#if 0
    void *buffer;
    size_t out_size;
 
-   ScspMuteAudio(SCSP_MUTE_SYSTEM);
    int error = YabSaveStateBuffer (&buffer, &out_size);
-   ScspUnMuteAudio(SCSP_MUTE_SYSTEM);
 
    memcpy(data, buffer, size);
 
    free(buffer);
 
    return !error;
-#endif
 }
 
 bool retro_unserialize(const void *data, size_t size)
 {
-#if 0
-   ScspMuteAudio(SCSP_MUTE_SYSTEM);
    int error = YabLoadStateBuffer(data, size);
-   ScspUnMuteAudio(SCSP_MUTE_SYSTEM);
 
    return !error;
-#endif
 }
 
 void retro_cheat_reset(void)
@@ -903,7 +896,7 @@ bool retro_load_game(const struct retro_game_info *info)
    yinit.sh2coretype     = 8;
    yinit.vidcoretype     = VIDCORE_SOFT;
    yinit.sndcoretype     = SNDCORE_LIBRETRO;
-   yinit.m68kcoretype    = M68KCORE_C68K;
+   yinit.m68kcoretype    = M68KCORE_MUSASHI;
    yinit.carttype        = addon_cart_type;
    yinit.regionid        = REGION_AUTODETECT;
    yinit.buppath         = NULL;
@@ -919,9 +912,11 @@ bool retro_load_game(const struct retro_game_info *info)
    yinit.usethreads      = 0;
 #endif
    yinit.useVdp1cache    = 0;
+   yinit.usecache        = 0;
 
    ret = YabauseInit(&yinit);
-   //YabauseSetDecilineMode(1);
+   YabauseSetVideoFormat(VIDEOFORMATTYPE_NTSC);
+   VIDSoftSetBilinear(1);
 
    return !ret;
 }
@@ -983,7 +978,6 @@ void retro_reset(void)
 {
    YabauseResetButton();
    YabauseInit(&yinit);
-   //YabauseSetDecilineMode(1);
 }
 
 void retro_run(void)
