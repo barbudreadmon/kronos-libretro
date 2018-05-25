@@ -220,7 +220,7 @@ else
 	CXX = g++
 	SHARED := -shared -Wl,--no-undefined -Wl,--version-script=link.T
 	LDFLAGS += -static-libgcc -static-libstdc++ -lwinmm
-	FLAGS += -DHAVE_WFOPEN
+	FLAGS += -DHAVE_WFOPEN -D_WINDOWS
 	#DYNAREC = 2
 
 endif
