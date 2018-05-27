@@ -36,6 +36,12 @@
 #include "error.h"
 #include "debug.h"
 
+#if 0
+#ifdef __LIBRETRO__
+#include "streams/file_stream_transforms.h"
+#endif
+#endif
+
 #ifndef HAVE_STRICMP
 #ifdef HAVE_STRCASECMP
 #define stricmp strcasecmp
