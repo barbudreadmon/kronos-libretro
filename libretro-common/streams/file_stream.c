@@ -283,7 +283,9 @@ int filestream_scanf(RFILE *stream, const char* format, ...)
    }
    
    va_end(args);
-   filestream_seek(stream, startpos+(bufiter-buf), RETRO_VFS_SEEK_POSITION_START);
+
+   if (bufiter != buf+maxlen)
+      filestream_seek(stream, startpos+(bufiter-buf), RETRO_VFS_SEEK_POSITION_START);
    
    return ret;
 }

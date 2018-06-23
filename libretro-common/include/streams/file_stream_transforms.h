@@ -57,7 +57,7 @@ RETRO_BEGIN_DECLS
 #define fputc rfputc
 #define fprintf rfprintf
 #define ferror rferror
-#define fscanf rfscanf
+#define fscanf filestream_scanf
 #define feof rfeof
 
 RFILE* rfopen(const char *path, const char *mode);
@@ -83,8 +83,6 @@ int rfputc(int character, RFILE * stream);
 int rfprintf(RFILE * stream, const char * format, ...);
 
 int rferror(RFILE* stream);
-
-int rfscanf(RFILE * stream, const char * format, ...);
 
 int rfeof(RFILE* stream);
 
